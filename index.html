@@ -1,204 +1,280 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smart School</title>
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
-  
-  <!-- Seu CSS -->
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
-<div class="mobile">
-
-  <!-- ==================== LOGIN ==================== -->
-  <div id="loginScreen" class="screen active">
-    <div class="gradient-header" style="text-align:center; padding-top:60px;">
-      <div class="logo">
-        <img src="img/logo.png" alt="logo-imagem">
-      </div>
-      <h2>Smart School</h2>
+  <!-- ===================== TELA 1: LOGIN ===================== -->
+  <div class="screen active" id="screen-login">
+    <div class="login-bg">
+      <div class="login-blob blob1"></div>
+      <div class="login-blob blob2"></div>
     </div>
-
-    <div class="login-form">
-      <div class="input-group">
-        <i class="fas fa-envelope"></i>
-        <input type="email" placeholder="Digite seu e-mail" />
+    <div class="login-card">
+      <div class="logo-circle">
+        <img src="img/logo.png" alt="Logo" />
       </div>
 
       <div class="input-group">
-        <i class="fas fa-lock"></i>
-        <input type="password" id="senha" placeholder="Digite sua senha" />
-        <span class="toggle-senha" onclick="toggleSenha()">👁️</span>
+        <i class="fa fa-envelope input-icon"></i>
+        <input type="email" placeholder="Digite seu e-mail" id="login-email" />
+      </div>
+      <div class="input-group">
+        <i class="fa fa-lock input-icon"></i>
+        <input type="password" placeholder="Digite sua senha" id="login-senha" />
+        <i class="fa fa-eye input-icon-right toggle-password"></i>
       </div>
 
-      <div class="forgot">Esqueceu sua senha?</div>
+      <a href="#" class="forgot-link">Esqueceu sua senha ?</a>
 
-      <button class="btn primary" onclick="trocarTela('homeScreen')">Entrar</button>
+      <button class="btn-primary" id="btn-entrar">Entrar</button>
 
       <div class="divider"><span>ou</span></div>
 
-      <div class="social-buttons">
-        <button><i class="fab fa-google"></i> Google</button>
-        <button><i class="fab fa-facebook-f"></i> Facebook</button>
+      <div class="social-login">
+        <button class="social-btn google"><i class="fab fa-google"></i></button>
+        <button class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
       </div>
 
-      <p class="signup">
-        Novo por aqui? <span>Cadastre-se</span>
-      </p>
+      <p class="register-text">Novo por aqui? <a href="#" class="link-red">Cadastre-se</a></p>
     </div>
   </div>
 
-  <!-- ==================== PAINEL (HOME) ==================== -->
-  <div id="homeScreen" class="screen">
-    <div class="gradient-header greeting">
+  <!-- ===================== TELA 2: PAINEL ===================== -->
+  <div class="screen" id="screen-painel">
+
+    <div class="top-bar">
       <div>
-        <h1>Painel</h1>
-        <p><strong>Olá, Carlos 👋</strong><br>Tudo pronto para estudar?</p>
+        <p class="greeting">Olá, Carlos 👋</p>
+        <p class="sub-greeting">Tudo pronto para estudar?</p>
       </div>
-      <img src="https://i.pravatar.cc/150?img=68" alt="Carlos" class="avatar">
+      <div class="avatar-wrap">
+        <img src="https://img.icons8.com/color/48/user-male-circle--v1.png" class="avatar" alt="Avatar" />
+      </div>
     </div>
 
-    <div class="content">
-      <div class="today-card">
-        <h2>Ter, 26 de Abril</h2>
-        <p><strong>4</strong> tarefas para hoje</p>
+    <div class="scroll-content">
+
+      <div class="date-card">
+        <p class="date-label">Ter, Abril 26</p>
+        <p class="date-sub"><span class="date-num">4</span> tarefas para hoje</p>
       </div>
 
       <div class="quick-menu">
-        <div class="menu-item"><i class="fas fa-folder"></i><span>Materiais</span></div>
-        <div class="menu-item active"><i class="fas fa-tasks"></i><span>Tarefas</span></div>
-        <div class="menu-item"><i class="fas fa-calendar-alt"></i><span>Calendário</span></div>
-        <div class="menu-item"><i class="fas fa-comment-dots"></i><span>Mensagens</span></div>
+        <!-- Materiais → abre screen-materiais -->
+        <div class="quick-item" onclick="goTo('screen-materiais')" style="cursor:pointer;">
+          <div class="quick-icon blue"><i class="fa fa-folder"></i></div>
+          <span>Materiais</span>
+        </div>
+        <div class="quick-item" onclick="goTo('screen-tarefas')" style="cursor:pointer;">
+          <div class="quick-icon blue"><i class="fa fa-tasks"></i></div>
+          <span>Tarefas</span>
+        </div>
+        <div class="quick-item">
+          <div class="quick-icon red"><i class="fa fa-calendar"></i></div>
+          <span>Calendário</span>
+          <span class="badge-dot red-dot"></span>
+        </div>
+        <div class="quick-item">
+          <div class="quick-icon blue"><i class="fa fa-comment"></i></div>
+          <span>Mensagens</span>
+        </div>
       </div>
 
-      <div class="section">
-        <div class="section-header">
-          <span>Próximas Tarefas</span>
-          <span onclick="trocarTela('tasksScreen')" class="ver-todas">Ver todas →</span>
+      <div class="section-header">
+        <span class="section-title">Proximas Tarefas</span>
+        <a href="#" class="ver-todas" onclick="goTo('screen-tarefas'); return false;">Ver todas</a>
+      </div>
+
+      <div class="task-item" onclick="goTo('screen-tarefas')" style="cursor:pointer;">
+        <div class="task-check done"><i class="fa fa-check"></i></div>
+        <div class="task-info">
+          <p class="task-name">Problemas de matemática</p>
+          <p class="task-date">Para amanhã, 09:00</p>
         </div>
-        <div class="task-item">
-          <div class="check done">✓</div>
-          <div class="task-info">
-            <strong>Problemas de matemática</strong>
-            <small>Para amanhã, 09:00</small>
+        <i class="fa fa-ellipsis-h task-more"></i>
+      </div>
+
+      <div class="task-item" onclick="goTo('screen-tarefas')" style="cursor:pointer;">
+        <div class="task-check pending"><i class="fa fa-bookmark"></i></div>
+        <div class="task-info">
+          <p class="task-name">Redação sobre o meio ambiente</p>
+          <p class="task-date">Para amanhã, 11:00</p>
+        </div>
+        <i class="fa fa-ellipsis-h task-more"></i>
+      </div>
+
+      <div class="section-header">
+        <span class="section-title">Materiais Recentes</span>
+        <i class="fa fa-plus-circle add-icon"></i>
+      </div>
+
+      <div class="material-item">
+        <div class="mat-icon pdf"><i class="fa fa-file-pdf"></i></div>
+        <span class="mat-name">Lista de exercícios.pdf</span>
+      </div>
+
+      <div style="height: 80px;"></div>
+    </div><!-- /scroll-content -->
+
+    <nav class="bottom-nav">
+      <button class="nav-btn active" onclick="goTo('screen-painel')"><i class="fa fa-home"></i><span>Início</span></button>
+      <!-- Materiais → abre screen-materiais -->
+      <button class="nav-btn" onclick="goTo('screen-materiais')"><i class="fa fa-book"></i><span>Materiais</span></button>
+      <button class="nav-btn"><i class="fa fa-comment-dots"></i><span>Mensagens</span></button>
+      <button class="nav-btn"><i class="fa fa-cog"></i><span>Configuração</span></button>
+    </nav>
+  </div>
+
+  <!-- ===================== TELA 3: MATERIAIS (TABS) ===================== -->
+  <div class="screen" id="screen-materiais">
+
+    <div class="top-bar">
+      <div>
+        <p class="greeting">Materiais 📚</p>
+        <p class="sub-greeting">Suas tarefas e atividades</p>
+      </div>
+      <div class="avatar-wrap">
+        <img src="https://img.icons8.com/color/48/user-male-circle--v1.png" class="avatar" alt="Avatar" />
+      </div>
+    </div>
+
+    <div class="scroll-content">
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" id="tab-pendentes" onclick="switchTab('pendentes')">Pendentes</button>
+        <button class="tab" id="tab-concluidas" onclick="switchTab('concluidas')">Concluídas</button>
+      </div>
+
+      <!-- Pendentes -->
+      <div class="task-cards" id="lista-pendentes">
+        <div class="task-card" onclick="goTo('screen-tarefas')">
+          <div class="card-check done"><i class="fa fa-check"></i></div>
+          <div class="card-body">
+            <p class="card-title">Problemas de matemática</p>
+            <p class="card-sub">Para amanhã, 9:00</p>
+            <p class="card-desc">Lista de problemas resolvidos</p>
           </div>
         </div>
-        <div class="task-item">
-          <div class="check pending">!</div>
-          <div class="task-info">
-            <strong>Redação sobre o meio ambiente</strong>
-            <small>Para amanhã, 11:00</small>
+        <div class="task-card" onclick="goTo('screen-tarefas')">
+          <div class="card-check fail"><i class="fa fa-times"></i></div>
+          <div class="card-body">
+            <p class="card-title">Redação sobre o meio ambiente</p>
+            <p class="card-sub">Para amanhã, 9:00</p>
+            <p class="card-desc">Lista de problemas resolvidos</p>
+          </div>
+        </div>
+        <div class="task-card" onclick="goTo('screen-tarefas')">
+          <div class="card-check done"><i class="fa fa-check"></i></div>
+          <div class="card-body">
+            <p class="card-title">Leitura capítulo 5</p>
+            <p class="card-sub">Para amanhã, 9:00</p>
+            <p class="card-desc">Lista de problemas resolvidos</p>
+          </div>
+        </div>
+        <div class="task-card" onclick="goTo('screen-tarefas')">
+          <div class="card-check fail"><i class="fa fa-times"></i></div>
+          <div class="card-body">
+            <p class="card-title">Mapa mental de história</p>
+            <p class="card-sub">Para amanhã, 9:00</p>
+            <p class="card-desc">Lista de problemas resolvidos</p>
           </div>
         </div>
       </div>
-    </div>
 
+      <!-- Concluídas -->
+      <div class="task-cards hidden" id="lista-concluidas">
+        <div class="task-card">
+          <div class="card-check done"><i class="fa fa-check"></i></div>
+          <div class="card-body">
+            <p class="card-title">Exercícios de física</p>
+            <p class="card-sub">Ontem, 14:00</p>
+            <p class="card-desc">Capítulo 3 concluído</p>
+          </div>
+        </div>
+        <div class="task-card">
+          <div class="card-check done"><i class="fa fa-check"></i></div>
+          <div class="card-body">
+            <p class="card-title">Resumo de história</p>
+            <p class="card-sub">Ontem, 16:00</p>
+            <p class="card-desc">Páginas 40 a 55 resumidas</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="height: 80px;"></div>
+    </div><!-- /scroll-content -->
+
+    <!-- Bottom nav com "Início" ativo -->
     <nav class="bottom-nav">
-      <div class="nav-item active"><i class="fas fa-home"></i><span>Início</span></div>
-      <div class="nav-item" onclick="trocarTela('tasksScreen')"><i class="fas fa-tasks"></i><span>Tarefas</span></div>
-      <div class="nav-item"><i class="fas fa-comment-dots"></i><span>Mensagens</span></div>
-      <div class="nav-item"><i class="fas fa-cog"></i><span>Config</span></div>
+      <button class="nav-btn" onclick="goTo('screen-painel')"><i class="fa fa-home"></i><span>Início</span></button>
+      <button class="nav-btn active"><i class="fa fa-book"></i><span>Materiais</span></button>
+      <button class="nav-btn"><i class="fa fa-comment-dots"></i><span>Mensagens</span></button>
+      <button class="nav-btn"><i class="fa fa-cog"></i><span>Configuração</span></button>
     </nav>
   </div>
 
-  <!-- ==================== LISTA DE TAREFAS ==================== -->
-  <div id="tasksScreen" class="screen">
-    <div class="gradient-header tasks-header">
-      <h2>Smart School</h2>
-      <img src="https://i.pravatar.cc/150?img=68" alt="Avatar" class="avatar small">
+  <!-- ===================== TELA 4: DETALHE DA TAREFA ===================== -->
+  <div class="screen" id="screen-tarefas">
+
+    <div class="detail-top-bar">
+      <button class="back-btn" onclick="goTo('screen-painel')"><i class="fa fa-arrow-left"></i></button>
+      <span class="detail-title">Tarefas</span>
+      <button class="search-btn"><i class="fa fa-search"></i></button>
     </div>
 
-    <div class="tabs">
-      <button class="tab active">Pendentes</button>
-      <button class="tab">Concluídas</button>
-    </div>
+    <div class="scroll-content">
 
-    <div class="content">
-      <div class="task-card" onclick="trocarTela('taskDetailScreen')">
-        <div class="task-check done">✓</div>
-        <div class="task-main">
-          <strong>Problemas de matemática</strong>
-          <small>Para amanhã, 09:00</small>
+      <div class="subject-badge">
+        <span>Matemática</span>
+        <i class="fa fa-check"></i>
+      </div>
+
+      <div class="detail-card">
+        <h2 class="detail-task-title">Problemas de matemática</h2>
+        <p class="detail-due">Para amanhã 09:00</p>
+
+        <div class="todo-section">
+          <p class="todo-label">A fazer</p>
+          <p class="todo-desc">Subir a lista de problemas resolvidos</p>
+        </div>
+
+        <button class="btn-enviar">Enviar Tarefa</button>
+
+        <div class="materials-section">
+          <p class="mat-section-title">Materiais da Tarefa</p>
+          <div class="mat-file">
+            <div class="mat-icon-sm pdf"><i class="fa fa-file-pdf"></i></div>
+            <div>
+              <p class="mat-file-name">Lista de problemas.pdf</p>
+              <p class="mat-file-date">Ontem</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="instructions-section">
+          <p class="instr-title">Instruções</p>
+          <div class="instr-item">
+            <img src="https://img.icons8.com/color/40/user-male-circle--v1.png" class="instr-avatar" alt="Prof" />
+            <div class="instr-body">
+              <p class="instr-meta">Prof. Ricardo <span class="instr-time">Ontem, 20:30</span></p>
+              <p class="instr-text">Carlos lembre de conferir a fórmula de baskára antes de resolver a questão 3</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="task-card">
-        <div class="task-check canceled">✗</div>
-        <div class="task-main">
-          <strong>Redação sobre o meio ambiente</strong>
-          <small>Para amanhã, 09:00</small>
-        </div>
-      </div>
-
-      <div class="task-card">
-        <div class="task-check">📖</div>
-        <div class="task-main">
-          <strong>Leitura capítulo 5</strong>
-          <small>Para amanhã, 09:00</small>
-        </div>
-      </div>
-    </div>
-
-    <nav class="bottom-nav">
-      <div class="nav-item" onclick="trocarTela('homeScreen')"><i class="fas fa-home"></i><span>Início</span></div>
-      <div class="nav-item active"><i class="fas fa-tasks"></i><span>Tarefas</span></div>
-      <div class="nav-item"><i class="fas fa-comment-dots"></i><span>Mensagens</span></div>
-      <div class="nav-item"><i class="fas fa-cog"></i><span>Config</span></div>
-    </nav>
+      <div style="height: 32px;"></div>
+    </div><!-- /scroll-content -->
   </div>
 
-  <!-- ==================== DETALHE DA TAREFA ==================== -->
-  <div id="taskDetailScreen" class="screen">
-    <div class="gradient-header detail-header">
-      <button class="back-btn" onclick="trocarTela('tasksScreen')">←</button>
-      <h2>Tarefas</h2>
-      <i class="fas fa-search"></i>
-    </div>
-
-    <div class="content">
-      <div class="task-header-gradient">
-        <div>
-          <h3>Problemas de matemática</h3>
-          <p>Para amanhã 09:00</p>
-        </div>
-        <div class="status">✓</div>
-      </div>
-
-      <h4>A fazer</h4>
-      <div class="card">
-        Subir a lista de problemas resolvidos
-      </div>
-
-      <button class="btn primary large">Enviar Tarefa</button>
-
-      <h4>Materiais da Tarefa</h4>
-      <div class="file-item">
-        <i class="fas fa-file-pdf"></i>
-        <span>Lista de problemas.pdf</span>
-      </div>
-
-      <h4>Instruções</h4>
-      <div class="instruction-box">
-        <strong>Prof. Ricardo</strong> · Ontem, 20:30<br><br>
-        Carlos, lembre de conferir a fórmula da bissetriz antes de resolver a questão 3.
-      </div>
-    </div>
-
-    <nav class="bottom-nav">
-      <div class="nav-item" onclick="trocarTela('homeScreen')"><i class="fas fa-home"></i><span>Início</span></div>
-      <div class="nav-item active"><i class="fas fa-tasks"></i><span>Tarefas</span></div>
-      <div class="nav-item"><i class="fas fa-comment-dots"></i><span>Mensagens</span></div>
-      <div class="nav-item"><i class="fas fa-cog"></i><span>Config</span></div>
-    </nav>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
