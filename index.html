@@ -20,7 +20,6 @@
       <div class="logo-circle">
         <img src="img/logo.png" alt="Logo" />
       </div>
-
       <div class="input-group">
         <i class="fa fa-envelope input-icon"></i>
         <input type="email" placeholder="Digite seu e-mail" id="login-email" />
@@ -30,44 +29,68 @@
         <input type="password" placeholder="Digite sua senha" id="login-senha" />
         <i class="fa fa-eye input-icon-right toggle-password"></i>
       </div>
-
       <a href="#" class="forgot-link">Esqueceu sua senha ?</a>
-
       <button class="btn-primary" id="btn-entrar">Entrar</button>
-
       <div class="divider"><span>ou</span></div>
-
       <div class="social-login">
-        <button class="social-btn google"><i class="fab fa-google"></i></button>
-        <button class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
+        <button class="social-btn google">
+          <img src="img/google.png" alt="Google" class="social-img" />
+        </button>
+        <button class="social-btn facebook">
+          <img src="img/facebook.png" alt="Facebook" class="social-img" />
+        </button>
       </div>
-
       <p class="register-text">Novo por aqui? <a href="#" class="link-red">Cadastre-se</a></p>
     </div>
   </div>
 
   <!-- ===================== TELA 2: PAINEL ===================== -->
   <div class="screen" id="screen-painel">
-
     <div class="top-bar">
       <div>
         <p class="greeting">Olá, Carlos 👋</p>
         <p class="sub-greeting">Tudo pronto para estudar?</p>
       </div>
       <div class="avatar-wrap">
-        <img src="https://img.icons8.com/color/48/user-male-circle--v1.png" class="avatar" alt="Avatar" />
+        <img src="img/perfil.png" class="avatar" alt="Avatar" id="avatar-painel" onclick="toggleMiniPerfil(event)" style="cursor:pointer;" />
+        <!-- MINI POPUP -->
+        <div class="mini-perfil hidden" id="mini-perfil" onclick="event.stopPropagation()">
+          <div class="mini-perfil-top">
+            <img src="img/perfil.png" class="mini-avatar" alt="Avatar" />
+            <div>
+              <p class="mini-nome">Carlos Silva</p>
+              <p class="mini-turma">3º Ano A — Ensino Médio</p>
+            </div>
+          </div>
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <span class="mini-stat-val">8,4</span>
+              <span class="mini-stat-label">Média</span>
+            </div>
+            <div class="mini-stat-divider"></div>
+            <div class="mini-stat">
+              <span class="mini-stat-val">92%</span>
+              <span class="mini-stat-label">Presença</span>
+            </div>
+            <div class="mini-stat-divider"></div>
+            <div class="mini-stat">
+              <span class="mini-stat-val">🔥7</span>
+              <span class="mini-stat-label">Streak</span>
+            </div>
+          </div>
+          <button class="mini-btn-perfil" onclick="goTo('screen-perfil'); closeMiniPerfil()">
+            <i class="fa fa-user"></i> Ver perfil completo
+          </button>
+        </div>
       </div>
     </div>
 
     <div class="scroll-content">
-
       <div class="date-card">
         <p class="date-label">Ter, Abril 26</p>
         <p class="date-sub"><span class="date-num">4</span> tarefas para hoje</p>
       </div>
-
       <div class="quick-menu">
-        <!-- Materiais → abre screen-materiais -->
         <div class="quick-item" onclick="goTo('screen-materiais')" style="cursor:pointer;">
           <div class="quick-icon blue"><i class="fa fa-folder"></i></div>
           <span>Materiais</span>
@@ -76,22 +99,20 @@
           <div class="quick-icon blue"><i class="fa fa-tasks"></i></div>
           <span>Tarefas</span>
         </div>
-        <div class="quick-item">
+        <div class="quick-item" onclick="openManut()" style="cursor:pointer;">
           <div class="quick-icon red"><i class="fa fa-calendar"></i></div>
           <span>Calendário</span>
           <span class="badge-dot red-dot"></span>
         </div>
-        <div class="quick-item">
+        <div class="quick-item" onclick="openManut()" style="cursor:pointer;">
           <div class="quick-icon blue"><i class="fa fa-comment"></i></div>
           <span>Mensagens</span>
         </div>
       </div>
-
       <div class="section-header">
         <span class="section-title">Proximas Tarefas</span>
         <a href="#" class="ver-todas" onclick="goTo('screen-tarefas'); return false;">Ver todas</a>
       </div>
-
       <div class="task-item" onclick="goTo('screen-tarefas')" style="cursor:pointer;">
         <div class="task-check done"><i class="fa fa-check"></i></div>
         <div class="task-info">
@@ -100,7 +121,6 @@
         </div>
         <i class="fa fa-ellipsis-h task-more"></i>
       </div>
-
       <div class="task-item" onclick="goTo('screen-tarefas')" style="cursor:pointer;">
         <div class="task-check pending"><i class="fa fa-bookmark"></i></div>
         <div class="task-info">
@@ -109,51 +129,40 @@
         </div>
         <i class="fa fa-ellipsis-h task-more"></i>
       </div>
-
       <div class="section-header">
         <span class="section-title">Materiais Recentes</span>
         <i class="fa fa-plus-circle add-icon"></i>
       </div>
-
       <div class="material-item">
         <div class="mat-icon pdf"><i class="fa fa-file-pdf"></i></div>
         <span class="mat-name">Lista de exercícios.pdf</span>
       </div>
-
       <div style="height: 80px;"></div>
-    </div><!-- /scroll-content -->
-
+    </div>
     <nav class="bottom-nav">
       <button class="nav-btn active" onclick="goTo('screen-painel')"><i class="fa fa-home"></i><span>Início</span></button>
-      <!-- Materiais → abre screen-materiais -->
       <button class="nav-btn" onclick="goTo('screen-materiais')"><i class="fa fa-book"></i><span>Materiais</span></button>
-      <button class="nav-btn"><i class="fa fa-comment-dots"></i><span>Mensagens</span></button>
-      <button class="nav-btn"><i class="fa fa-cog"></i><span>Configuração</span></button>
+      <button class="nav-btn" onclick="openManut()"><i class="fa fa-comment-dots"></i><span>Mensagens</span></button>
+      <button class="nav-btn" onclick="openManut()"><i class="fa fa-cog"></i><span>Configuração</span></button>
     </nav>
   </div>
 
-  <!-- ===================== TELA 3: MATERIAIS (TABS) ===================== -->
+  <!-- ===================== TELA 3: MATERIAIS ===================== -->
   <div class="screen" id="screen-materiais">
-
     <div class="top-bar">
       <div>
         <p class="greeting">Materiais 📚</p>
         <p class="sub-greeting">Suas tarefas e atividades</p>
       </div>
       <div class="avatar-wrap">
-        <img src="https://img.icons8.com/color/48/user-male-circle--v1.png" class="avatar" alt="Avatar" />
+        <img src="img/perfil.png" class="avatar" alt="Avatar" onclick="goTo('screen-perfil')" style="cursor:pointer;" />
       </div>
     </div>
-
     <div class="scroll-content">
-
-      <!-- Tabs -->
       <div class="tabs">
         <button class="tab active" id="tab-pendentes" onclick="switchTab('pendentes')">Pendentes</button>
         <button class="tab" id="tab-concluidas" onclick="switchTab('concluidas')">Concluídas</button>
       </div>
-
-      <!-- Pendentes -->
       <div class="task-cards" id="lista-pendentes">
         <div class="task-card" onclick="goTo('screen-tarefas')">
           <div class="card-check done"><i class="fa fa-check"></i></div>
@@ -188,8 +197,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Concluídas -->
       <div class="task-cards hidden" id="lista-concluidas">
         <div class="task-card">
           <div class="card-check done"><i class="fa fa-check"></i></div>
@@ -208,46 +215,36 @@
           </div>
         </div>
       </div>
-
       <div style="height: 80px;"></div>
-    </div><!-- /scroll-content -->
-
-    <!-- Bottom nav com "Início" ativo -->
+    </div>
     <nav class="bottom-nav">
       <button class="nav-btn" onclick="goTo('screen-painel')"><i class="fa fa-home"></i><span>Início</span></button>
       <button class="nav-btn active"><i class="fa fa-book"></i><span>Materiais</span></button>
-      <button class="nav-btn"><i class="fa fa-comment-dots"></i><span>Mensagens</span></button>
-      <button class="nav-btn"><i class="fa fa-cog"></i><span>Configuração</span></button>
+      <button class="nav-btn" onclick="openManut()"><i class="fa fa-comment-dots"></i><span>Mensagens</span></button>
+      <button class="nav-btn" onclick="openManut()"><i class="fa fa-cog"></i><span>Configuração</span></button>
     </nav>
   </div>
 
   <!-- ===================== TELA 4: DETALHE DA TAREFA ===================== -->
   <div class="screen" id="screen-tarefas">
-
     <div class="detail-top-bar">
       <button class="back-btn" onclick="goTo('screen-painel')"><i class="fa fa-arrow-left"></i></button>
       <span class="detail-title">Tarefas</span>
       <button class="search-btn"><i class="fa fa-search"></i></button>
     </div>
-
     <div class="scroll-content">
-
       <div class="subject-badge">
         <span>Matemática</span>
         <i class="fa fa-check"></i>
       </div>
-
       <div class="detail-card">
         <h2 class="detail-task-title">Problemas de matemática</h2>
         <p class="detail-due">Para amanhã 09:00</p>
-
         <div class="todo-section">
           <p class="todo-label">A fazer</p>
           <p class="todo-desc">Subir a lista de problemas resolvidos</p>
         </div>
-
         <button class="btn-enviar">Enviar Tarefa</button>
-
         <div class="materials-section">
           <p class="mat-section-title">Materiais da Tarefa</p>
           <div class="mat-file">
@@ -258,7 +255,6 @@
             </div>
           </div>
         </div>
-
         <div class="instructions-section">
           <p class="instr-title">Instruções</p>
           <div class="instr-item">
@@ -270,9 +266,165 @@
           </div>
         </div>
       </div>
-
       <div style="height: 32px;"></div>
-    </div><!-- /scroll-content -->
+    </div>
+  </div>
+
+  <!-- ===================== TELA 5: PERFIL ===================== -->
+  <div class="screen" id="screen-perfil">
+    <div class="perfil-header">
+      <button class="back-btn-perfil" onclick="goTo('screen-painel')"><i class="fa fa-arrow-left"></i></button>
+      <span class="perfil-header-title">Meu Perfil</span>
+      <div style="width:38px;"></div>
+    </div>
+
+    <div class="scroll-content">
+      <!-- Capa + Foto -->
+      <div class="perfil-capa">
+        <div class="perfil-capa-bg"></div>
+        <div class="perfil-foto-wrap">
+          <img src="img/perfil.png" class="perfil-foto" alt="Foto" />
+          <div class="perfil-foto-badge"><i class="fa fa-camera"></i></div>
+        </div>
+      </div>
+
+      <!-- Nome e escola -->
+      <div class="perfil-info-card">
+        <p class="perfil-nome">Carlos Silva</p>
+        <p class="perfil-turma"><i class="fa fa-graduation-cap"></i>&nbsp; 3º Ano A — Ensino Médio</p>
+        <p class="perfil-escola"><i class="fa fa-school"></i>&nbsp; E.E. Prof. João Mendes</p>
+        <div class="perfil-stats-row">
+          <div class="perfil-stat-box">
+            <span class="perfil-stat-num">8,4</span>
+            <span class="perfil-stat-lbl">Média Geral</span>
+          </div>
+          <div class="perfil-stat-box">
+            <span class="perfil-stat-num">92%</span>
+            <span class="perfil-stat-lbl">Frequência</span>
+          </div>
+          <div class="perfil-stat-box">
+            <span class="perfil-stat-num">🔥 7</span>
+            <span class="perfil-stat-lbl">Dias seguidos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progresso por matéria -->
+      <div class="perfil-section-card">
+        <p class="perfil-section-title"><i class="fa fa-chart-bar"></i>&nbsp; Progresso por Matéria</p>
+
+        <div class="materia-row">
+          <div class="materia-info">
+            <span class="materia-nome">Matemática</span>
+            <span class="materia-nota nota-boa">9,0</span>
+          </div>
+          <div class="barra-bg"><div class="barra-fill azul" style="width:90%"></div></div>
+        </div>
+        <div class="materia-row">
+          <div class="materia-info">
+            <span class="materia-nome">Português</span>
+            <span class="materia-nota nota-boa">8,5</span>
+          </div>
+          <div class="barra-bg"><div class="barra-fill azul" style="width:85%"></div></div>
+        </div>
+        <div class="materia-row">
+          <div class="materia-info">
+            <span class="materia-nome">Biologia</span>
+            <span class="materia-nota nota-boa">8,0</span>
+          </div>
+          <div class="barra-bg"><div class="barra-fill azul" style="width:80%"></div></div>
+        </div>
+        <div class="materia-row">
+          <div class="materia-info">
+            <span class="materia-nome">História</span>
+            <span class="materia-nota nota-media">7,2</span>
+          </div>
+          <div class="barra-bg"><div class="barra-fill amarelo" style="width:72%"></div></div>
+        </div>
+        <div class="materia-row">
+          <div class="materia-info">
+            <span class="materia-nome">Física</span>
+            <span class="materia-nota nota-media">6,8</span>
+          </div>
+          <div class="barra-bg"><div class="barra-fill amarelo" style="width:68%"></div></div>
+        </div>
+        <div class="materia-row">
+          <div class="materia-info">
+            <span class="materia-nome">Química</span>
+            <span class="materia-nota nota-baixa">5,5</span>
+          </div>
+          <div class="barra-bg"><div class="barra-fill vermelho" style="width:55%"></div></div>
+        </div>
+      </div>
+
+      <!-- Conquistas -->
+      <div class="perfil-section-card">
+        <p class="perfil-section-title"><i class="fa fa-trophy"></i>&nbsp; Conquistas</p>
+        <div class="conquistas-grid">
+          <div class="conquista-item ativa">
+            <div class="conquista-icon">🔥</div>
+            <span class="conquista-label">Sequência 7</span>
+          </div>
+          <div class="conquista-item ativa">
+            <div class="conquista-icon">⭐</div>
+            <span class="conquista-label">Nota 10</span>
+          </div>
+          <div class="conquista-item ativa">
+            <div class="conquista-icon">📚</div>
+            <span class="conquista-label">Leitor</span>
+          </div>
+          <div class="conquista-item inativa">
+            <div class="conquista-icon">🏆</div>
+            <span class="conquista-label">Top Turma</span>
+          </div>
+          <div class="conquista-item inativa">
+            <div class="conquista-icon">💯</div>
+            <span class="conquista-label">Perfeito</span>
+          </div>
+          <div class="conquista-item inativa">
+            <div class="conquista-icon">🚀</div>
+            <span class="conquista-label">Destaque</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Informações -->
+      <div class="perfil-section-card">
+        <p class="perfil-section-title"><i class="fa fa-id-card"></i>&nbsp; Informações</p>
+        <div class="info-row">
+          <span class="info-label">E-mail</span>
+          <span class="info-val">carlos@escola.edu.br</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Matrícula</span>
+          <span class="info-val">2024-0347</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Turno</span>
+          <span class="info-val">Manhã</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Responsável</span>
+          <span class="info-val">Maria Silva</span>
+        </div>
+      </div>
+
+      <button class="btn-sair" onclick="goTo('screen-login')">
+        <i class="fa fa-sign-out-alt"></i>&nbsp; Sair da conta
+      </button>
+
+      <div style="height: 40px;"></div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL MANUTENÇÃO ===================== -->
+  <div class="manut-overlay hidden" id="manut-overlay" onclick="closeManut()">
+    <div class="manut-modal" onclick="event.stopPropagation()">
+      <div class="manut-icon">🔧</div>
+      <p class="manut-title">Em Manutenção</p>
+      <p class="manut-desc">Esta seção está sendo preparada e estará disponível em breve!</p>
+      <button class="manut-btn" onclick="closeManut()">Entendido</button>
+    </div>
   </div>
 
   <script src="app.js"></script>
